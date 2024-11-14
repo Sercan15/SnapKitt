@@ -10,113 +10,137 @@ import SnapKit
 
 class ViewController: UIViewController {
     
-    // Cihaz alanlarını tanımla
-    let deviceView1 = UIView()
-    let deviceImageView1 = UIImageView()
-    let deviceLabel1 = UILabel()
-    let deviceButton1 = UIButton()
+    let futureTechLabel = UILabel()
     
-    let deviceView2 = UIView()
-    let deviceImageView2 = UIImageView()
-    let deviceLabel2 = UILabel()
-    let deviceButton2 = UIButton()
+    let robotView = UIView()
+    let robotImageView = UIImageView()
+    let robotLabel = UILabel()
+    let robotButton = UIButton()
+    let robotView2 = UIView()
+    let robotImageView2 = UIImageView()
+    let robotLabel2 = UILabel()
+    let robotButton2 = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
+        view.backgroundColor = .white
+        
+        view.addSubview(futureTechLabel)
+        futureTechLabel.text = "Future Tech"
+        futureTechLabel.textColor = .blue
+        futureTechLabel.font = .systemFont(ofSize: 30)
+        futureTechLabel.textAlignment = .center
+        futureTechLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(90)
+        }
+        
+        view.addSubview(robotView)
+        robotView.backgroundColor = .gray
+        robotView.layer.cornerRadius = 10
+        robotView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(futureTechLabel.snp.bottom).offset(40)
+            make.width.equalTo(200)
+            make.height.equalTo(150)
+        }
+        
+        robotView.addSubview(robotLabel)
+        robotLabel.text = "Robot 1"
+        robotLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        robotLabel.textColor = .black
+        robotLabel.textAlignment = .center
+        robotLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.centerX.equalToSuperview()
+        }
+        
+     
+        robotView.addSubview(robotImageView)
+        robotImageView.image = UIImage(named: "robot")
+        robotImageView.contentMode = .scaleAspectFit
+        robotImageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(80)
+        }
+        
+        robotView.addSubview(robotButton)
+        robotButton.setTitle("Turn On", for: .normal)
+        robotButton.backgroundColor = .green
+        robotButton.layer.cornerRadius = 10
+        robotButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-10)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(100)
+            make.height.equalTo(40)
+        }
+        
+        robotButton.addTarget(self, action: #selector(robotButtonTapped), for: .touchUpInside)
+        
+        
+        view.addSubview(robotView2)
+        robotView2.backgroundColor = .lightGray
+        robotView2.layer.cornerRadius = 10
+        robotView2.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(robotView.snp.bottom).offset(20)
+            make.width.equalTo(200)
+            make.height.equalTo(150)
+        }
+        
+        
+        robotView2.addSubview(robotLabel2)
+        robotLabel2.text = "Robot2"
+        robotLabel2.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        robotLabel2.textColor = .black
+        robotLabel2.textAlignment = .center
+        robotLabel2.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.centerX.equalToSuperview()
+        }
+        
+        
+        robotView2.addSubview(robotImageView2)
+        robotImageView2.image = UIImage(named: "robot2")
+        robotImageView2.contentMode = .scaleAspectFit
+        robotImageView2.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(80)
+        }
+        
+        
+        robotView2.addSubview(robotButton2)
+        robotButton2.setTitle("Turn On", for: .normal)
+        robotButton2.backgroundColor = .green
+        robotButton2.layer.cornerRadius = 10
+        robotButton2.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-10)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(100)
+            make.height.equalTo(40)
+        }
+        robotButton2.addTarget(self, action: #selector(robotButton2Tapped), for: .touchUpInside)
     }
     
-    func setupUI() {
-        // Birinci cihaz görünümünü ayarla
-        deviceView1.backgroundColor = .systemGray6
-        deviceView1.layer.cornerRadius = 10
-        view.addSubview(deviceView1)
-        
-        deviceImageView1.image = UIImage(systemName: "lightbulb")
-        deviceImageView1.contentMode = .scaleAspectFit
-        deviceView1.addSubview(deviceImageView1)
-        
-        deviceLabel1.text = "Smart Light"
-        deviceLabel1.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        deviceLabel1.textAlignment = .center
-        deviceView1.addSubview(deviceLabel1)
-        
-        deviceButton1.setTitle("Turn On/Off", for: .normal)
-        deviceButton1.backgroundColor = .systemBlue
-        deviceButton1.layer.cornerRadius = 5
-        deviceView1.addSubview(deviceButton1)
-        
-        // SnapKit ile konumlandırmalarını ayarla
-        deviceView1.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(150)
+    @objc func robotButtonTapped() {
+            if robotButton.title(for: .normal) == "Turn On" {
+                robotButton.setTitle("Turn Off", for: .normal)
+                robotButton.backgroundColor = .red
+            } else {
+                robotButton.setTitle("Turn On", for: .normal)
+                robotButton.backgroundColor = .green
+            }
         }
         
-        deviceImageView1.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.centerX.equalToSuperview()
-            make.width.height.equalTo(50)
+        
+    @objc func robotButton2Tapped() {
+            if robotButton2.title(for: .normal) == "Turn On" {
+                robotButton2.setTitle("Turn Off", for: .normal)
+                robotButton2.backgroundColor = .red
+            } else {
+                robotButton2.setTitle("Turn On", for: .normal)
+                robotButton2.backgroundColor = .green
+            }
         }
-        
-        deviceLabel1.snp.makeConstraints { make in
-            make.top.equalTo(deviceImageView1.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview()
-        }
-        
-        deviceButton1.snp.makeConstraints { make in
-            make.top.equalTo(deviceLabel1.snp.bottom).offset(10)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(100)
-            make.height.equalTo(30)
-        }
-        
-        // İkinci cihaz görünümünü ayarla
-        deviceView2.backgroundColor = .systemGray6
-        deviceView2.layer.cornerRadius = 10
-        view.addSubview(deviceView2)
-        
-        deviceImageView2.image = UIImage(systemName: "thermometer")
-        deviceImageView2.contentMode = .scaleAspectFit
-        deviceView2.addSubview(deviceImageView2)
-        
-        deviceLabel2.text = "Smart Thermostat"
-        deviceLabel2.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        deviceLabel2.textAlignment = .center
-        deviceView2.addSubview(deviceLabel2)
-        
-        deviceButton2.setTitle("Turn On/Off", for: .normal)
-        deviceButton2.backgroundColor = .systemBlue
-        deviceButton2.layer.cornerRadius = 5
-        deviceView2.addSubview(deviceButton2)
-        
-        // SnapKit ile konumlandırmalarını ayarla
-        deviceView2.snp.makeConstraints { make in
-            make.top.equalTo(deviceView1.snp.bottom).offset(20)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(150)
-        }
-        
-        deviceImageView2.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.centerX.equalToSuperview()
-            make.width.height.equalTo(50)
-        }
-        
-        deviceLabel2.snp.makeConstraints { make in
-            make.top.equalTo(deviceImageView2.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview()
-        }
-        
-        deviceButton2.snp.makeConstraints { make in
-            make.top.equalTo(deviceLabel2.snp.bottom).offset(10)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(100)
-            make.height.equalTo(30)
-        }
-    }
 }
-
